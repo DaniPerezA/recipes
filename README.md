@@ -4,11 +4,6 @@ Find the most relevant recipes that you can prepare with the ingredients that yo
 ## Data
 The data is scraped from www.allrecipes.com with [recipe-scrapers](https://github.com/hhursev/recipe-scrapers)
 
-Download it with this command if the above link doesn't work:
-```sh textWrap
-wget https://pennylane-interviewing-assets-20220328.s3.eu-west-1.amazonaws.com/recipes-en.json.gz && gzip -dc recipes-en.json.gz > recipes-en.json
-```
-
 ## Running instructions:
 
 1- Install java (open-jdk) version 21 or higher and have pointed the JAVA_HOME environment variable to the jdk installation path (debian-based distros: /usr/lib/jvm/java-21-openjdk-amd64) and maven v3.6.3 or higher.
