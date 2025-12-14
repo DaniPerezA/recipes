@@ -1,0 +1,65 @@
+/* style.css */
+#container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#search-bar {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#suggestions {
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+    position: absolute;
+    background: white;
+    width: calc(100% - 22px); /* Adjust for padding */
+}
+
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background: #f0f0f0;
+}
+
+#selected-ingredients {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.chip {
+    background: #e0e0e0;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.chip span {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+#look-for-recipes {
+    padding: 10px 20px;
+    background: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.recipe-card {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
