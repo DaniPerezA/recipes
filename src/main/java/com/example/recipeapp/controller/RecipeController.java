@@ -12,7 +12,6 @@ import jakarta.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
@@ -77,12 +76,12 @@ public class RecipeController {
     }
 
     private String decodeImageUrl(String s) {
-        String decodedImageUrl = s;
+        String decodedImageUrl;
         try {
             decodedImageUrl = URLDecoder.decode(s.split("=")[1], StandardCharsets.UTF_8);
-        } finally {
-            return decodedImageUrl;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            decodedImageUrl = s;
         }
-
+        return decodedImageUrl;
     }
 }
