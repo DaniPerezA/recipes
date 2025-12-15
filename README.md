@@ -8,7 +8,7 @@ The data is scraped from www.allrecipes.com with [recipe-scrapers](https://githu
 
 1- Install java (open-jdk) version 21 or higher and have pointed the JAVA_HOME environment variable to the jdk installation path (debian-based distros: /usr/lib/jvm/java-21-openjdk-amd64) and maven v3.6.3 or higher.
 
-2- Git checkout the code from the branch feature_branch (or from main when the pull requests are accepted).
+2- Clone the repo.
 
 3- Have a MySQL server 8+ installed and running on port 3306 (which is the default one) with an empty DB named recipe_db and the following user created:
 
