@@ -7,13 +7,12 @@ import com.example.recipeapp.entity.Recipe;
 import com.example.recipeapp.entity.Ingredient;
 import com.example.recipeapp.repository.IngredientRepository;
 import com.example.recipeapp.repository.RecipeRepository;
+import com.example.recipeapp.util.Helper;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -70,18 +69,9 @@ public class RecipeController {
         dto.setCuisine(r.getCuisine());
         dto.setCategory(r.getCategory());
         dto.setAuthor(r.getAuthor());
-        dto.setImage(decodeImageUrl(r.getImage()));
+        dto.setImage(Helper.decodeImageUrl(r.getImage()));
         dto.setIngredients(r.getIngredients().stream().map(Ingredient::getName).collect(Collectors.toList()));
         return dto;
     }
 
-    private String decodeImageUrl(String s) {
-        String decodedImageUrl;
-        try {
-            decodedImageUrl = URLDecoder.decode(s.split("=")[1], StandardCharsets.UTF_8);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            decodedImageUrl = s;
-        }
-        return decodedImageUrl;
-    }
 }
