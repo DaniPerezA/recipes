@@ -27,10 +27,10 @@ body {
     border-radius: 4px;
 }
 
-/* Suggestions dropdown - hidden by default, shown only when search bar focused */
+/* Suggestions dropdown */
 #suggestions {
     border: 1px solid #ccc;
-    max-height: 212px;            /* Exactly 4 items */
+    max-height: 212px;
     overflow-y: auto;
     position: absolute;
     background: white;
@@ -41,11 +41,11 @@ body {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     border-top: none;
     border-radius: 0 0 4px 4px;
-    display: none;                /* Hidden by default */
+    display: none;
 }
 
 #suggestions.visible {
-    display: block;               /* Shown when needed */
+    display: block;
 }
 
 .suggestion-item {
@@ -65,20 +65,51 @@ body {
     border-bottom: none;
 }
 
+/* Selected ingredients with footer for clear button */
 #selected-ingredients {
     display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+    flex-direction: column;
     margin: 15px 0;
-    padding: 12px;
     background: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 4px;
-    max-height: 120px;
-    overflow-y: auto;
-    overflow-x: hidden;
     width: 100%;
     box-sizing: border-box;
+    max-height: 120px;
+    overflow: hidden;
+}
+
+#selected-ingredients .chips-container {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 60px;
+}
+
+#selected-ingredients .footer {
+    padding: 8px 12px;
+    text-align: right;
+    border-top: 1px solid #eee;
+    background: #f0f0f0;
+}
+
+#selected-ingredients .clear-all {
+    background: none;
+    border: none;
+    font-size: 13px;
+    color: #666;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+#selected-ingredients .clear-all:hover {
+    background: #e0e0e0;
+    color: #333;
 }
 
 .chip {

@@ -76,6 +76,11 @@ searchBar.addEventListener('input', async () => {
 
 function renderSelected() {
     selectedIngredients.innerHTML = '';
+
+    // Chips container
+    const chipsContainer = document.createElement('div');
+    chipsContainer.className = 'chips-container';
+
     selected.forEach(ing => {
         const chip = document.createElement('div');
         chip.className = 'chip';
@@ -88,8 +93,30 @@ function renderSelected() {
             renderSelected();
         };
         chip.appendChild(remove);
-        selectedIngredients.appendChild(chip);
+        chipsContainer.appendChild(chip);
     });
+
+    selectedIngredients.appendChild(chipsContainer);
+
+    // Footer with Clear all button
+    const footer = document.createElement('div');
+    footer.className = 'footer';
+
+    const clearButton = document.createElement('button');
+    clearButton.textContent = 'Clear all';
+    clearButton.className = 'clear-all';
+    clearButton.onclick = () => {
+        selected = [];
+        renderSelected();
+    };
+
+    // Hide footer if no ingredients
+    if (selected.length === 0) {
+        footer.style.display = 'none';
+    }
+
+    footer.appendChild(clearButton);
+    selectedIngredients.appendChild(footer);
 }
 
 lookButton.addEventListener('click', async () => {
@@ -108,29 +135,24 @@ lookButton.addEventListener('click', async () => {
         allRecipes = await res.json();
         currentPage = 1;
         renderRecipes();
-        hideSuggestions(); // Ensure dropdown is hidden after search
+        hideSuggestions();
     } catch (error) {
         console.error('Error fetching recipes:', error);
     }
 });
 
-// Focus management: show suggestions only when search bar is focused
+// Focus & blur
 searchBar.addEventListener('focus', () => {
-    if (searchBar.value.trim().length >= 2) {
-        // Re-fetch if needed, but usually already shown from input
-        // Optional: trigger re-search here if desired
-    }
-    showSuggestions(); // In case there are cached results
+    // Suggestions shown via input event
 });
 
 searchBar.addEventListener('blur', () => {
-    // Delay to allow clicking a suggestion
     setTimeout(() => {
         hideSuggestions();
     }, 200);
 });
 
-// ESC key: clear input and hide suggestions
+// ESC key
 searchBar.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         searchBar.value = '';
@@ -145,8 +167,9 @@ searchWrapper.addEventListener('click', (e) => {
     }
 });
 
-// Initial state
+// Initial render
 hideSuggestions();
+renderSelected();
 
 function renderRecipes() {
     recipesDiv.innerHTML = '';
